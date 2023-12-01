@@ -1,11 +1,10 @@
 # Frappe-ERPNext Version-15 in Ubuntu 22.04 LTS
-A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
+Cài đặt ERPNext 15 trên Ubuntu từ phiên bản 22.04 trở lên
 
 #### Refer this for default python 3.11 setup
 
-- [D-codeE Video Tutorial](https://youtu.be/TReR0I0O1Xo)
 
-### Pre-requisites 
+### Yêu cầu 
 
       Python 3.11+
       Node.js 18+
@@ -20,23 +19,23 @@ A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
 
 
 ------
-### Steps to Install python 3.11.xx
+### Cài đặt python 3.11.xx
 ------
 
-> ## `Note: If you are using ubuntu 23.xx or latest  the default python version is 3.11.xx. So you can skip the python 3.11 installation steps`
+> ## `Chú ý: Nếu phiên bản Ubuntu từ 23.xx trở lên thì không cần cài đặt python 3.11.x `
     
-#### First, import the Python repository with the most up-to-date stable releases.
+#### Thêm gói thư viện vào hệ thống.
 
       sudo add-apt-repository ppa:deadsnakes/ppa -y
       sudo apt update
       
-#### install Python 3.11 by executing the following command in your terminal:
+#### Cài đặt python 3.11:
 
       sudo apt install python3.11
       python3.11 --version
 
     
-#### To install all the extras in one go, run the following command.
+#### Giải nén và cài đặt pyhton3.11.
 
       sudo apt install python3.11-full
 
@@ -50,23 +49,23 @@ A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
 -----
 
 
-### STEP 1 Install git
+### STEP 1 Cài đặt git
     sudo apt-get install git
 
-### STEP 2 install python-dev
+### STEP 2 cài đặt python-dev
 
     sudo apt-get install python3-dev
 
-### STEP 3 Install setuptools and pip (Python's Package Manager).
+### STEP 3 cài đặt setuptools và pip (Python's Package Manager).
 
     sudo apt-get install python3-setuptools python3-pip
 
-### STEP 4 Install virtualenv
+### STEP 4 cài đặt virtualenv
     
     sudo apt install python3.11-venv
     
 
-### STEP 5 Install MariaDB
+### STEP 5 Cài đặt MariaDB
 
     sudo apt-get install software-properties-common
     sudo apt install mariadb-server
@@ -112,15 +111,15 @@ A complete Guide to Install Frappe/ERPNext version 15  in Ubuntu 22.04 LTS
     
     
     
-### STEP 6  MySQL database development files
+### STEP 6  Cài đặt MySQL database development files
 
     sudo apt-get install libmysqlclient-dev
 
-### STEP 7 Edit the mariadb configuration ( unicode character encoding )
+### STEP 7 Sửa file mariadb configuration ( unicode character encoding )
 
     sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 
-add this to the 50-server.cnf file
+thêm dòng bên dưới vào file 50-server.cnf
 
     
     [server]
@@ -150,29 +149,29 @@ Now press (Ctrl-X) to exit
 
     sudo service mysql restart
 
-### STEP 8 install Redis
+### STEP 8 Cài đặt Redis
     
     sudo apt-get install redis-server
 
-### STEP 9 install Node.js 18.X package
+### STEP 9 Cài đặt Node.js 18.X package
 
     sudo apt install curl 
     curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
     source ~/.profile
     nvm install 18
 
-### STEP 10  install Yarn
+### STEP 10  Cài đặt Yarn
 
     sudo apt-get install npm
 
     sudo npm install -g yarn
 
-### STEP 11 install wkhtmltopdf
+### STEP 11 Cài đặt wkhtmltopdf
 
     sudo apt-get install xvfb libfontconfig wkhtmltopdf
     
 
-### STEP 12 install frappe-bench
+### STEP 12 Cài đặt frappe-bench
 
     sudo -H pip3 install frappe-bench
     
@@ -185,16 +184,16 @@ Now press (Ctrl-X) to exit
     cd frappe-bench/
     bench start
     
-### STEP 14 create a site in frappe bench 
+### STEP 14 tạo site trong frappe bench 
     
-    bench new-site dcode.com
+    bench new-site tên-site-của-bạn (nguyentrunghau.name.vn)
     
-    bench --site dcode.com add-to-hosts
+    bench --site tên-site-của-bạn add-to-hosts (trỏ về localhost)
 
-Open url http://dcode.com:8000 to login 
+Mở url http://tên-site-của-bạn:8000 để đăng nhập 
 
 
-### STEP 15 install ERPNext latest version in bench & site
+### STEP 15 Cài đặt ERPNext phiên bản 15 trong bench & site
 
     
     bench get-app erpnext --branch version-15
