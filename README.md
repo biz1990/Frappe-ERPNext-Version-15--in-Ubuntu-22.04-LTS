@@ -204,7 +204,13 @@ Mở url http://tên-site-của-bạn:8000 để đăng nhập
     
     bench start
     
-    
+    #### Lưu ý:
+    Phiên bản ERPNext 15 trở lên muốn sử dụng ip cục bộ trong mạng LAN thì phải sử dụng lệnh
+
+    bench use tên-site-của-bạn
+
+    sau đó chạy lệnh
+    bench start
 
 
     
