@@ -182,6 +182,10 @@ Now press (Ctrl-X) to exit
     bench init frappe-bench --frappe-branch version-15 --python python3.11
     
     cd frappe-bench/
+### Change user directory permissions
+This will give the bench user execution permission to the home directory.
+
+      chmod -R o+rx /home/[frappe-user]
     bench start
     
 ### STEP 14 tạo site trong frappe bench 
