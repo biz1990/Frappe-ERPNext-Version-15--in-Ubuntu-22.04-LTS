@@ -215,6 +215,10 @@ Mở url http://tên-site-của-bạn:8000 để đăng nhập
 
     sau đó chạy lệnh
     bench start
-
-
+### Note
+      Sau khi update hoặc upgrade lên phiên bản mới có thể Frappe sẽ không khởi chạy được lúc đó chúng ta sẽ chỉnh sửa 
+      sudo nano /etc/redis/redis.conf
+      đổi cổng sang cổng khác như 15000
+      sau đó chạy lệnh
+      sudo systemctl restart redis.service
     
