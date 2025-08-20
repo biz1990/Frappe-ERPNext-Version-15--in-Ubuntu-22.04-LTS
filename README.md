@@ -170,7 +170,11 @@ Now press (Ctrl-X) to exit
 
     sudo apt-get install xvfb libfontconfig wkhtmltopdf
     
-
+### Tạo user và cấp quyền
+      sudo adduser frappe
+      sudo usermod -aG sudo frappe
+      
+      su - frappe  # Chuyển sang user frappe
 ### STEP 12 Cài đặt frappe-bench
 
     sudo -H pip3 install frappe-bench
