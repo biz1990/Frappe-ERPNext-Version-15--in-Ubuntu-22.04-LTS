@@ -225,4 +225,41 @@ Mở url http://tên-site-của-bạn:8000 để đăng nhập
       đổi cổng sang cổng khác như 15000
       sau đó chạy lệnh
       sudo systemctl restart redis.service
-    
+### Xử lý lỗi ERROR: sudo supervisorctl restart frappe: subprocess.CalledProcessError: Command 'sudo supervisorctl restart frappe:' returned non-zero exit status 2.
+      1. Kiểm tra cấu hình Supervisor
+            sudo supervisorctl status
+      2. Kiểm tra file cấu hình Supervisor
+            ls /etc/supervisor/conf.d/
+      Nếu không có file nào liên quan đến , bạn có thể tạo lại bằng lệnh:
+            bench setup supervisor
+            sudo ln -s ~/frappe-bench/config/supervisor.conf /etc/supervisor/conf.d/frappe.conf
+            sudo supervisorctl reread
+            sudo supervisorctl update
+    3. Khởi động lại Supervisor
+          sudo service supervisor restart
+          hoặc
+         sudo systemctl restart supervisor
+   4. Thử lại lệnh khởi động tiến trình
+           sudo supervisorctl restart all
+### Xử lý lỗi frappe-bench-redis:frappe-bench-redis-cache: ERROR (spawn error) frappe-bench-redis:frappe-bench-redis-queue: ERROR (spawn error)
+   1. Thiết lập lại Supervisor
+      bench setup supervisor
+      sudo ln -s ~/frappe-bench/config/supervisor.conf /etc/supervisor/conf.d/frappe-bench.conf
+      sudo supervisorctl reread
+      sudo supervisorctl update
+   2. Khởi động lại toàn bộ tiến trình
+      bench restart
+### Xử lý lỗi sudo cat /etc/supervisor/conf.d/frappe-bench.conf cat: /etc/supervisor/conf.d/frappe-bench.conf: No such file or directory
+   1. Tạo lại file cấu hình Supervisor
+      bench setup supervisor
+   2. Liên kết file cấu hình vào thư mục Supervisor
+      sudo ln -s ~/frappe-bench/config/supervisor.conf /etc/supervisor/conf.d/frappe-bench.conf
+   3. Tải lại cấu hình Supervisor
+      sudo supervisorctl reread
+      sudo supervisorctl update
+   4. Khởi động lại Supervisor
+      sudo service supervisor restart
+      hoặc
+      sudo systemctl restart supervisor
+   5. Khởi động lại các tiến trình ERPNext
+      bench restart
