@@ -224,6 +224,58 @@ Mở url http://tên-site-của-bạn:8000 để đăng nhập
 
     sau đó chạy lệnh
     bench start
+
+### STEP 16
+      1. Cấu hình production
+      Thiết lập supervisor
+      bash
+      sudo bench setup production frappe
+      Cấu hình Nginx cho tên miền
+      bash
+      sudo nano /etc/nginx/sites-available/sunrise.io.vn
+      Thêm nội dung sau (điều chỉnh theo tên miền của bạn):
+      
+      text
+      server {
+          listen 80;
+          server_name sunrise.io.vn www.sunrise.io.vn;
+      
+          location / {
+              proxy_pass http://127.0.0.1:8000;
+              proxy_set_header Host $host;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          }
+      
+          location /assets {
+              alias /home/frappe/frappe-bench/sites/sunrise.io.vn/public/assets;
+          }
+      
+          location ~ ^/protected/(.*) {
+              internal;
+              alias /home/frappe/frappe-bench/sites/sunrise.io.vn/$1;
+          }
+      }
+      Kích hoạt cấu hình:
+      
+      bash
+      sudo ln -s /etc/nginx/sites-available/sunrise.io.vn /etc/nginx/sites-enabled
+      sudo nginx -t
+      sudo systemctl restart nginx
+      2. Tối ưu cho VPS RAM thấp
+      Cấu hình worker cho VPS RAM thấp
+      bash
+      bench set-config background_workers 1
+      bench set-config worker_retry_period 3600
+      bench set-config web_worker_count 1
+      bench set-config socketio_port 9000
+      Khởi động lại services
+      bash
+      bench restart
+      2. Cài đặt SSL với Let's Encrypt
+      bash
+      sudo apt install -y certbot python3-certbot-nginx
+      sudo certbot --nginx -d sunrise.io.vn -d www.sunrise.io.vn
 ### Note
       Sau khi update hoặc upgrade lên phiên bản mới có thể Frappe sẽ không khởi chạy được lúc đó chúng ta sẽ chỉnh sửa 
       sudo nano /etc/redis/redis.conf
