@@ -1,6 +1,11 @@
 # Frappe-ERPNext Version-15 in Ubuntu 22.04 LTS
 Cài đặt ERPNext 15 trên Ubuntu từ phiên bản 22.04 trở lên
-
+### Mở rộng dung lượng SWAp khi ram thấp
+      sudo fallocate -l 4G /swapfile
+      sudo chmod 600 /swapfile
+      sudo mkswap /swapfile
+      sudo swapon /swapfile
+      echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 #### Refer this for default python 3.11 setup
 
 
